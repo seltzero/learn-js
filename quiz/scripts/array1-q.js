@@ -14,19 +14,27 @@ window.onload = function() {
               // the display is regenerated every time a search term is entered.
               list.innerHTML = '';
 
-              // loop through the sorted array, and display all the search terms in the list
-              for (const itemText of myHistoryCopy) {
-                
-              }
+            myHistory.unshift(inp.value);
 
-              // If the array length is 5 or more, remove the oldest search term
-              if (myHistory.length >= MAX_HISTORY) {
-                
-              }
+            myHistoryCopy = myHistory;
+            // sort the array based on length of the term
+            myHistoryCopy.sort(function(a, b) { a.length - b.length; });
+            // loop through the sorted array, and display all the search terms in the list
+            for (const itemText of myHistoryCopy) {
+                // add an li item to the list for each search term
+                const li = document.createElement('li');
+                li.textContent = itemText;
+                list.appendChild(li);
+            }
 
-              // empty the search input and focus it, ready for the next term to be entered
-              inp.value = '';
-              btn.focus();
+            // If the array length is 5 or more, remove the oldest search term
+            if (myHistory.length >= MAX_HISTORY) {
+                myHistory.pop();
+            }
+
+            // empty the search input and focus it, ready for the next term to be entered
+            inp.value = '';
+            btn.focus();
           }
     }
 }
