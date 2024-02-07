@@ -16,6 +16,14 @@ class PStackImpl extends PStack {
     super();
   }
 
+  get persons() {
+    return this._persons;
+  }
+
+  set persons(p) {
+    this._persons = p;
+  }
+
   push(p) {
     return this._persons.push(p)
   }
